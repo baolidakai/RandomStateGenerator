@@ -151,7 +151,7 @@ Bi = perm_inverse(B)
 
 # All 6 possible moves (assuming that the lower-bottom-right cubie
 # stays fixed).
-quarter_twists = (U, Ui, L, Li, R, Ri, B, Bi)
+moves = (U, Ui, L, Li, R, Ri, B, Bi)
 
 quarter_twists_names = {}
 quarter_twists_names[U] = 'U'
@@ -171,7 +171,6 @@ def shortest_path(start, end):
   You can use the rubik.quarter_twists move set.
   Each move can be applied using rubik.perm_apply
   '''
-  moves = quarter_twists
   forwardParent = {}
   backwardParent = {}
   forwardParent[start] = (None, None)

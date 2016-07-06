@@ -120,52 +120,28 @@ def perm_inverse(p):
     q[p[i]] = i
   return tuple(q)
 
-def perm_to_string(p):
-  '''
-  Convert p to string, slightly more compact
-  than list printing.
-  '''
-  s = '('
-  for x in p: s = s + '%2d '%x
-  s += ')'
-  return s
-
 ###################################################
 ### Make standard permutations of faces
 ###################################################
 # Identity: equal to (0, 1, 2, ..., 23).
 I = (flu, luf, ufl, fur, urf, rfu, fdl, dlf, lfd, frd, rdf, dfr, bul, ulb, lbu, bru, rub, ubr, bld, ldb, dbl, bdr, drb, rbd)
 
-'''
-When any of the following Rubik's cube permutations are applied, the
-three faces on a cubie naturally stay together:
-{0,1,2}, {3,4,5}, ..., {21,22,23}.
-'''
-
-# Front face rotated clockwise.
 F = (fdl, dlf, lfd, flu, luf, ufl, frd, rdf, dfr, fur, urf, rfu, 
      bul, ulb, lbu, bru, rub, ubr, bld, ldb, dbl, bdr, drb, rbd)
-# Front face rotated counter-clockwise.
 Fi = perm_inverse(F)
 F2 = perm_twice(F)
-
-# Left face rotated clockwise.
 L = (ulb, lbu, bul, fur, urf, rfu, ufl, flu, luf, frd, rdf, dfr,
      dbl, bld, ldb, bru, rub, ubr, dlf, lfd, fdl, bdr, drb, rbd)
-# Left face rotated counter-clockwise.
 Li = perm_inverse(L)
 L2 = perm_twice(L)
-
-# Upper face rotated clockwise.
 U = (rfu, fur, urf, rub, ubr, bru, fdl, dlf, lfd, frd, rdf, dfr,
      luf, ufl, flu, lbu, bul, ulb, bld, ldb, dbl, bdr, drb, rbd)
-# Upper face rotated counter-clockwise.
 Ui = perm_inverse(U)
 U2 = perm_twice(U)
 
 # All 6 possible moves (assuming that the lower-bottom-right cubie
 # stays fixed).
-quarter_twists = (F, Fi, F2, L, Li, L2, U, Ui, U2)
+moves = (F, Fi, F2, L, Li, L2, U, Ui, U2)
 
 quarter_twists_names = {}
 quarter_twists_names[F] = 'F'
@@ -186,7 +162,6 @@ def shortest_path(start, end):
   You can use the rubik.quarter_twists move set.
   Each move can be applied using rubik.perm_apply
   '''
-  moves = quarter_twists
   forwardParent = {}
   backwardParent = {}
   forwardParent[start] = (None, None)
