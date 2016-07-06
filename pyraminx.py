@@ -63,7 +63,7 @@ def randomScramble():
     scramble = shortest_path(I, state)
     if scramble and len(scramble) >= 6:
       rtn = ''.join([quarter_twists_names[move] for move in scramble])
-      for i, move in enumerate(['l', 'r', 'b', 'u']):
+      for move in 'lrbu':
         tmp = random.randint(0, 2)
         if tmp == 1:
           rtn += move
